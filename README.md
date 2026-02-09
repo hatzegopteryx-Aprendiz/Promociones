@@ -14,6 +14,7 @@ Este proyecto consiste en dos aplicaciones:
 ## Arquitectura del Proyecto
 
 ### Diagrama de Arquitectura
+### [Diagrama ER](doc/ER.png)
 
 ### Modelo de Datos (ERD)
 
