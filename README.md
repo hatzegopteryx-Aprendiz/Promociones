@@ -16,8 +16,6 @@ Este proyecto consiste en dos aplicaciones:
 ### Diagrama de Arquitectura
 ### [Diagrama ER](doc/ER.jpg)
 
-### Modelo de Datos (ERD)
-
 ## Reglas de Seguridad en Firebase
 
 ## Estructura de las Colecciones y Subcolecciones
