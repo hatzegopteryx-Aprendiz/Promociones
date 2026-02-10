@@ -40,3 +40,39 @@ Este proyecto consiste en dos aplicaciones:
 ### Frontend (Ionic React)
 
 ### Frontend (Vue.js)
+
+graph TD
+    subgraph "Client Side (Consumer)"
+        A[Ionic React App] -->|Subscribes| B[Promotion Repository]
+        B -->|Observer Pattern| C{Firestore SDK}
+    end
+
+    subgraph "Admin Side (Management)"
+        D[Vue.js Admin Panel] -->|Writes/Updates| E[Admin Repository]
+        E -->|Auth & CRUD| C
+    end
+
+    subgraph "Google Cloud / Firebase"
+        C --> F[(Firestore DB)]
+        C --> G[Firebase Auth]
+        C --> H[Firebase Storage]
+        F -->|Real-time Update| B
+    end
+
+    subgraph "Data Model"
+        F --- I[Promociones]
+        F --- J[Usuarios]
+        F --- K[Categorías]
+    end
+sequenceDiagram
+    participant Admin as Vue Admin App
+    participant FS as Firestore Cloud
+    participant Repo as Repository (Ionic)
+    participant UI as Ionic React UI
+
+    Admin->>FS: Actualiza Promoción (Estado/Descuento)
+    FS-->>FS: Valida Reglas de Seguridad
+    FS-->>Repo: Notifica cambio (Real-time Stream)
+    Repo->>Repo: Mapea Documento a Interfaz TS
+    Repo-->>UI: Notifica suscriptores (Observer)
+    UI->>UI: Renderiza Card Dinámica con nuevos datos
