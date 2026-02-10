@@ -17,6 +17,7 @@ Este proyecto consiste en dos aplicaciones:
 ### [Diagrama ER](doc/ER.jpg)
 
 ## Reglas de Seguridad en Firebase
+[Aqui iran las reglas de seguridad de firebase]
 
 ## Estructura de las Colecciones y Subcolecciones
 
@@ -41,34 +42,9 @@ Este proyecto consiste en dos aplicaciones:
 
 ### Frontend (Vue.js)
 
-graph TD
-    subgraph "Client Side (Consumer)"
-        A[Ionic React App] -->|Subscribes| B[Promotion Repository]
-        B -->|Observer Pattern| C{Firestore SDK}
-    end
+## Relaciones
 
-    subgraph "Admin Side (Management)"
-        D[Vue.js Admin Panel] -->|Writes/Updates| E[Admin Repository]
-        E -->|Auth & CRUD| C
-    end
-
-    subgraph "Google Cloud / Firebase"
-        C --> F[(Firestore DB)]
-        C --> G[Firebase Auth]
-        C --> H[Firebase Storage]
-        F -->|Real-time Update| B
-    end
-
-    subgraph "Data Model"
-        F --- I[Promociones]
-        F --- J[Usuarios]
-        F --- K[Categorías]
-    end
-sequenceDiagram
-    participant Admin as Vue Admin App
-    participant FS as Firestore Cloud
-    participant Repo as Repository (Ionic)
-    participant UI as Ionic React UI
+Flujo de la app de promociones
 
     Admin->>FS: Actualiza Promoción (Estado/Descuento)
     FS-->>FS: Valida Reglas de Seguridad
